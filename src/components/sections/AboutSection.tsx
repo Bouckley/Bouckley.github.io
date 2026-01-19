@@ -110,9 +110,9 @@ const AboutSection = () => {
           <div className="w-20 h-1 bg-primary rounded-full mb-8" />
         </AnimatedSection>
 
-        <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Bio Column */}
-          <AnimatedSection className="lg:col-span-2" delay={0.1}>
+          <AnimatedSection className="lg:col-span-3" delay={0.1}>
             <div className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {aboutBio.intro}
@@ -153,7 +153,7 @@ const AboutSection = () => {
           </AnimatedSection>
 
           {/* LinkedIn Posts Column */}
-          <AnimatedSection delay={0.2}>
+          <AnimatedSection className="lg:col-span-2" delay={0.2}>
             <LinkedInPostsCarousel />
           </AnimatedSection>
         </div>

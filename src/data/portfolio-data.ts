@@ -51,11 +51,11 @@ export const aboutBio = {
 export const linkedinPosts = [
   {
     embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7418085486541361152?collapsed=1",
-    height: 541,
+    height: 450,
   },
   {
     embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:share:7370224689153200128?collapsed=1",
-    height: 633,
+    height: 500,
   },
 ];
 
@@ -78,8 +78,8 @@ export const projects: Project[] = [
   {
     id: "1",
     title: "Fleet Condition Index (FCI)",
-    description: "Fleet scoring model analyzing 10 years of work-order data to evaluate bus performance and guide long-term fleet planning.",
-    longDescription: "Designed a comprehensive fleet scoring model using 10 years of work-order data including age, mileage, and mechanical history to evaluate bus performance. Achieved 100% accuracy in identifying the 15 best and 15 worst performing buses. Delivered an Excel index and PowerBI dashboard for condition tracking, work order trends, and maintenance cost analysis.",
+    description: "Fleet scoring model analyzing 10 years of work-order data to evaluate bus performance and guide long-term fleet planning for Durham Region Transit.",
+    longDescription: "Designed a comprehensive fleet scoring model for Durham Region Transit using 10 years of work-order data including age, mileage, and mechanical history to evaluate bus performance. Achieved 100% accuracy in identifying the 15 best and 15 worst performing buses. Delivered an Excel index and PowerBI dashboard for condition tracking, work order trends, and maintenance cost analysis.",
     category: "data",
     techStack: ["Python", "Excel", "SQL", "PowerBI"],
     role: "Data Analyst",
@@ -98,6 +98,7 @@ export const projects: Project[] = [
     category: "software",
     techStack: ["React", "TypeScript", "Flask", "AWS Bedrock", "Python"],
     role: "Full-Stack Developer",
+    githubUrl: "https://github.com/Queens-Dev-Den/PolicyProof",
     features: [
       "Analyzes policies against 15+ regulatory frameworks",
       "AWS Bedrock integration with Claude 3.5 Sonnet",
@@ -114,6 +115,7 @@ export const projects: Project[] = [
     category: "software",
     techStack: ["React.js", "JavaScript", "SQL", "Python", "HTML/CSS"],
     role: "Full-Stack Developer",
+    githubUrl: "https://github.com/Queens-Dev-Den/QHacks",
     features: [
       "AI-driven personal training recommendations",
       "OpenAI API integration",
