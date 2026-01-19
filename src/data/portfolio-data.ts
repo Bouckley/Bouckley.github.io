@@ -49,13 +49,14 @@ export const aboutBio = {
 };
 
 export const linkedinPosts = [
-  // Add your LinkedIn posts here
-  // {
-  //   title: "Post Title",
-  //   date: "2024-12-15",
-  //   excerpt: "Brief description...",
-  //   url: "https://linkedin.com/in/jordan-bouckley/posts/1",
-  // },
+  {
+    embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7418085486541361152?collapsed=1",
+    height: 541,
+  },
+  {
+    embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:share:7370224689153200128?collapsed=1",
+    height: 633,
+  },
 ];
 
 export type Project = {
