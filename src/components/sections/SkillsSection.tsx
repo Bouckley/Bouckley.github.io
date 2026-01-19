@@ -42,11 +42,11 @@ const SkillsSection = () => {
               <div className="bg-card rounded-xl p-6 card-elevated border border-border">
                 <div className="flex items-center gap-2 mb-4">
                   <Award className="h-5 w-5 text-primary" />
-                  <h3 className="font-semibold text-lg">Certificates</h3>
+                  <h3 className="font-semibold text-lg">Certificates & Awards</h3>
                 </div>
 
                 {certificates.length > 0 ? (
-                  <div className="space-y-4">
+                  <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2 scrollbar-thin">
                     {certificates.map((cert, index) => (
                       <div
                         key={index}
