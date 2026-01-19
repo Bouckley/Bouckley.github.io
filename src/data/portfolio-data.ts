@@ -94,7 +94,7 @@ export const projects: Project[] = [
     title: "PolicyProof",
     description: "AI-powered compliance auditing platform that analyzes policy PDFs against 15+ regulatory frameworks including GDPR, HIPAA, SOC 2, and ISO 27001.",
     longDescription: "Built an AI-powered compliance auditing platform that automates manual policy reviews by analyzing policy PDFs against 15+ regulatory frameworks. Engineered an AWS Amazon Bedrock (Claude 3.5 Sonnet) pipeline to detect violations, validate compliant sections, and generate page-level citations and remediation recommendations.",
-    category: "ai-ml",
+    category: "software",
     techStack: ["React", "TypeScript", "Flask", "AWS Bedrock", "Python"],
     role: "Full-Stack Developer",
     features: [
@@ -110,7 +110,7 @@ export const projects: Project[] = [
     title: "Activize",
     description: "AI-powered personal fitness trainer delivering fitness advice and workout routine improvements using OpenAI API.",
     longDescription: "Developed a full-stack AI-powered fitness trainer application that provides personalized fitness advice and improvements for workout routines. Implemented OpenAI API integration for intelligent, context-aware personal training recommendations.",
-    category: "ai-ml",
+    category: "software",
     techStack: ["React.js", "JavaScript", "SQL", "Python", "HTML/CSS"],
     role: "Full-Stack Developer",
     features: [
