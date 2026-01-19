@@ -4,31 +4,32 @@
 // ============================================
 
 export const personalInfo = {
-  name: "Jordan Bouckley",
+  name: "Jordan Santos-Bouckley",
   headline: "Computer Science Student @ Queen's University",
-  subtext: "Passionate about software development, data engineering, security, and AI/ML. Building things that matter.",
-  email: "jordan.bouckley@queensu.ca",
-  github: "https://github.com/jordanbouckley",
-  linkedin: "https://linkedin.com/in/jordanbouckley",
-  resumeUrl: "/resume.pdf", // Add your resume to public folder
+  subtext: "Focused on data analytics, software development, cybersecurity, and AI applications. Eager to contribute to collaborative teams and ship high-quality outcomes.",
+  email: "jordanbouckley@gmail.com",
+  phone: "(905)-449-2188",
+  github: "https://github.com/Bouckley",
+  linkedin: "https://linkedin.com/in/jordan-bouckley",
+  resumeUrl: "/resume.pdf",
   location: "Kingston, ON",
   expectedGrad: "2027",
 };
 
 export const quickStats = [
-  { label: "Projects", value: "12+" },
-  { label: "Languages", value: "8" },
-  { label: "Years Coding", value: "4+" },
+  { label: "Projects", value: "4+" },
+  { label: "Languages", value: "10" },
+  { label: "Years Coding", value: "3+" },
 ];
 
 export const aboutBio = {
-  intro: `I'm a Computer Science student at Queen's University (expected graduation ${personalInfo.expectedGrad}) with a deep passion for building impactful software. I love diving into complex systems, whether that's designing efficient data pipelines, exploring security vulnerabilities, or training machine learning models.`,
+  intro: `Motivated, detail-oriented Computer Science student at Queen's University (B.S., expected ${personalInfo.expectedGrad}) seeking opportunities in data analytics, software development, cybersecurity, and AI applications. Proven ability to analyze large datasets, build full-stack applications, and deliver actionable insights through dashboards and automation.`,
   interests: [
-    "Full-stack web development",
-    "Data engineering & analytics",
+    "Data analytics & visualization",
+    "Full-stack software development",
     "Cybersecurity fundamentals",
-    "Machine learning & AI applications",
-    "Open source contributions",
+    "AI/ML applications",
+    "Quality assurance & testing",
   ],
   hobbies: [
     "Playing competitive hockey 🏒",
@@ -36,22 +37,25 @@ export const aboutBio = {
     "Building side projects",
     "Learning about systems & infrastructure",
   ],
+  coursework: [
+    "Data Structures & Algorithms",
+    "Software Specifications",
+    "System Level Programming",
+    "Discrete Structures",
+    "Operating Systems",
+    "Software Quality Assurance",
+    "Computer Networks",
+  ],
 };
 
 export const linkedinPosts = [
-  {
-    title: "My Journey into Software Development",
-    date: "2024-12-15",
-    excerpt: "Reflecting on my first year of university and how I discovered my passion for coding...",
-    url: "https://linkedin.com/in/jordanbouckley/posts/1",
-  },
-  {
-    title: "Why I Love Open Source",
-    date: "2024-11-20",
-    excerpt: "Contributing to open source taught me more than any class ever could...",
-    url: "https://linkedin.com/in/jordanbouckley/posts/2",
-  },
-  // Add more posts here
+  // Add your LinkedIn posts here
+  // {
+  //   title: "Post Title",
+  //   date: "2024-12-15",
+  //   excerpt: "Brief description...",
+  //   url: "https://linkedin.com/in/jordan-bouckley/posts/1",
+  // },
 ];
 
 export type Project = {
@@ -72,97 +76,48 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "1",
-    title: "SecureChat App",
-    description: "End-to-end encrypted messaging application with real-time communication and file sharing.",
-    longDescription: "A full-stack encrypted messaging platform built with React and Node.js. Features include end-to-end encryption using the Signal Protocol, real-time messaging via WebSockets, file sharing with client-side encryption, and user authentication with 2FA support.",
-    category: "security",
-    techStack: ["React", "Node.js", "Socket.io", "PostgreSQL", "Crypto.js"],
-    role: "Full-Stack Developer",
-    githubUrl: "https://github.com/jordanbouckley/securechat",
-    youtubeUrl: "https://youtube.com/watch?v=demo1",
+    title: "Fleet Condition Index (FCI)",
+    description: "Fleet scoring model analyzing 10 years of work-order data to evaluate bus performance and guide long-term fleet planning.",
+    longDescription: "Designed a comprehensive fleet scoring model using 10 years of work-order data including age, mileage, and mechanical history to evaluate bus performance. Achieved 100% accuracy in identifying the 15 best and 15 worst performing buses. Delivered an Excel index and PowerBI dashboard for condition tracking, work order trends, and maintenance cost analysis.",
+    category: "data",
+    techStack: ["Python", "Excel", "SQL", "PowerBI"],
+    role: "Data Analyst",
     features: [
-      "End-to-end encryption using Signal Protocol",
-      "Real-time messaging with WebSockets",
-      "Secure file sharing",
-      "Two-factor authentication",
+      "Analyzed 10 years of vehicle work-order data",
+      "100% accuracy identifying top/bottom performing buses",
+      "Interactive PowerBI dashboard for condition tracking",
+      "Maintenance cost analysis using Agile methods",
     ],
   },
   {
     id: "2",
-    title: "Data Pipeline Orchestrator",
-    description: "Automated ETL pipeline system for processing large-scale datasets with monitoring dashboard.",
-    longDescription: "A scalable data pipeline orchestration system that automates ETL workflows. Built to handle terabytes of data with fault tolerance and real-time monitoring capabilities.",
-    category: "data",
-    techStack: ["Python", "Apache Airflow", "PostgreSQL", "Docker", "Redis"],
-    role: "Data Engineer",
-    githubUrl: "https://github.com/jordanbouckley/pipeline-orchestrator",
+    title: "PolicyProof",
+    description: "AI-powered compliance auditing platform that analyzes policy PDFs against 15+ regulatory frameworks including GDPR, HIPAA, SOC 2, and ISO 27001.",
+    longDescription: "Built an AI-powered compliance auditing platform that automates manual policy reviews by analyzing policy PDFs against 15+ regulatory frameworks. Engineered an AWS Amazon Bedrock (Claude 3.5 Sonnet) pipeline to detect violations, validate compliant sections, and generate page-level citations and remediation recommendations.",
+    category: "ai-ml",
+    techStack: ["React", "TypeScript", "Flask", "AWS Bedrock", "Python"],
+    role: "Full-Stack Developer",
     features: [
-      "Automated ETL workflows",
-      "Real-time monitoring dashboard",
-      "Fault-tolerant processing",
-      "Horizontal scaling support",
+      "Analyzes policies against 15+ regulatory frameworks",
+      "AWS Bedrock integration with Claude 3.5 Sonnet",
+      "Automated violation detection and compliance validation",
+      "Page-level citations and remediation recommendations",
+      "Interactive React UI for policy analysis",
     ],
   },
   {
     id: "3",
-    title: "AI Study Assistant",
-    description: "ML-powered study tool that generates flashcards and quizzes from uploaded documents.",
-    longDescription: "An intelligent study assistant that uses NLP to analyze documents and automatically generate study materials. Features include flashcard generation, quiz creation, and spaced repetition algorithms.",
+    title: "Activize",
+    description: "AI-powered personal fitness trainer delivering fitness advice and workout routine improvements using OpenAI API.",
+    longDescription: "Developed a full-stack AI-powered fitness trainer application that provides personalized fitness advice and improvements for workout routines. Implemented OpenAI API integration for intelligent, context-aware personal training recommendations.",
     category: "ai-ml",
-    techStack: ["Python", "TensorFlow", "Flask", "React", "OpenAI API"],
-    role: "ML Engineer",
-    githubUrl: "https://github.com/jordanbouckley/ai-study-assistant",
-    youtubeUrl: "https://youtube.com/watch?v=demo2",
+    techStack: ["React.js", "JavaScript", "SQL", "Python", "HTML/CSS"],
+    role: "Full-Stack Developer",
     features: [
-      "Document analysis with NLP",
-      "Automatic flashcard generation",
-      "Adaptive quiz creation",
-      "Spaced repetition system",
-    ],
-  },
-  {
-    id: "4",
-    title: "Portfolio Website",
-    description: "Modern, responsive personal portfolio built with React and TypeScript.",
-    category: "software",
-    techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    role: "Frontend Developer",
-    githubUrl: "https://github.com/jordanbouckley/portfolio",
-    features: [
-      "Responsive design",
-      "Dark/light mode",
-      "Smooth animations",
-      "Accessibility focused",
-    ],
-  },
-  {
-    id: "5",
-    title: "Network Vulnerability Scanner",
-    description: "Automated security tool for identifying common network vulnerabilities and misconfigurations.",
-    category: "security",
-    techStack: ["Python", "Nmap", "Scapy", "SQLite"],
-    role: "Security Researcher",
-    githubUrl: "https://github.com/jordanbouckley/vuln-scanner",
-    features: [
-      "Port scanning & service detection",
-      "CVE database integration",
-      "Report generation",
-      "Scheduled scanning",
-    ],
-  },
-  {
-    id: "6",
-    title: "Stock Prediction Model",
-    description: "LSTM neural network for predicting stock price movements using historical data.",
-    category: "ai-ml",
-    techStack: ["Python", "PyTorch", "Pandas", "NumPy", "Matplotlib"],
-    role: "ML Researcher",
-    githubUrl: "https://github.com/jordanbouckley/stock-predictor",
-    features: [
-      "LSTM architecture",
-      "Technical indicator analysis",
-      "Backtesting framework",
-      "Visualization dashboard",
+      "AI-driven personal training recommendations",
+      "OpenAI API integration",
+      "Personalized workout routine analysis",
+      "Full-stack implementation",
     ],
   },
 ];
@@ -170,23 +125,15 @@ export const projects: Project[] = [
 export const skillCategories = [
   {
     name: "Languages",
-    skills: ["Java", "Python", "C/C++", "JavaScript", "TypeScript", "HTML/CSS", "Bash", "SQL"],
+    skills: ["Java", "Python", "JavaScript", "TypeScript", "HTML/CSS", "Bash", "C++", "C", "C#", "SQL"],
   },
   {
-    name: "Frameworks & Tools",
-    skills: ["React", "Node.js", "Flask", "Django", "Git", "Docker", "Linux", "AWS", "PostgreSQL", "MongoDB"],
+    name: "Frameworks & Libraries",
+    skills: ["Node.js", "React.js", "Flask", "Express", "Tailwind CSS", "Pandas", "NumPy", "Playwright", "Pytest"],
   },
   {
-    name: "Concepts",
-    skills: [
-      "Data Structures & Algorithms",
-      "Operating Systems",
-      "Networking",
-      "Security Fundamentals",
-      "Machine Learning",
-      "Testing & CI/CD",
-      "Agile/Scrum",
-    ],
+    name: "Developer Tools",
+    skills: ["VS Code", "GitHub", "Docker", "Eclipse", "AWS", "Jupyter Notebooks", "Git", "VirtualBox", "Splunk", "Linux", "Postman", "Vite", "REST APIs", "PowerBI", "Excel"],
   },
 ];
 
@@ -198,19 +145,13 @@ export type Certificate = {
 };
 
 export const certificates: Certificate[] = [
-  {
-    name: "AWS Cloud Practitioner",
-    issuer: "Amazon Web Services",
-    date: "2024",
-    credentialUrl: "https://aws.amazon.com/verification",
-  },
-  {
-    name: "CompTIA Security+",
-    issuer: "CompTIA",
-    date: "2024",
-    credentialUrl: "https://comptia.org/verify",
-  },
-  // Add more certificates here
+  // Add certificates here when available
+  // {
+  //   name: "Certificate Name",
+  //   issuer: "Issuing Organization",
+  //   date: "2024",
+  //   credentialUrl: "https://credential-url.com",
+  // },
 ];
 
 export type Experience = {
@@ -225,31 +166,42 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
-    title: "Software Engineering Intern",
-    company: "Tech Startup Inc.",
-    location: "Toronto, ON",
-    startDate: "May 2024",
-    endDate: "Aug 2024",
+    title: "Data Analyst Intern",
+    company: "Durham Region Transit",
+    location: "Whitby, ON",
+    startDate: "May 2025",
+    endDate: "Aug 2025",
     description: [
-      "Developed and deployed 5+ microservices handling 10,000+ daily requests",
-      "Reduced API response time by 40% through database query optimization",
-      "Collaborated with cross-functional teams using Agile methodologies",
-      "Implemented CI/CD pipelines reducing deployment time by 60%",
+      "Analyzed 20K+ work orders and maintenance records for 200+ transit vehicles using SQL, Python (pandas, NumPy), Maximo, and Excel",
+      "Identified data quality issues to streamline the database, improving data workflows by 50%",
+      "Built interactive PowerBI dashboards to visualize KPIs, bus fleet conditions, and cost per service hour",
+      "Partnered with maintenance and operations teams to support bus scheduling decisions and fleet retirement recommendations",
     ],
-    techUsed: ["Python", "Docker", "PostgreSQL", "AWS", "React"],
+    techUsed: ["SQL", "Python", "Pandas", "NumPy", "PowerBI", "Excel", "Maximo"],
   },
   {
-    title: "Teaching Assistant - Data Structures",
-    company: "Queen's University",
+    title: "Project Manager",
+    company: "Queen's Sports Analytics Organization (QSAO)",
     location: "Kingston, ON",
-    startDate: "Sep 2024",
+    startDate: "Sept 2025",
     endDate: "Present",
     description: [
-      "Assist 200+ students with understanding complex data structures and algorithms",
-      "Hold weekly office hours and review sessions",
-      "Grade assignments and provide detailed feedback",
+      "Led a team of 5 analysts delivering performance insights from 10K+ data points per season",
+      "Produced articles and dashboards tracking player KPIs, lineup efficiency, and team trends",
     ],
-    techUsed: ["Java", "Python", "Git"],
+    techUsed: ["Data Analytics", "Dashboard Development", "Team Leadership"],
+  },
+  {
+    title: "Lifeguard and Swim Instructor",
+    company: "LifeTime Fitness",
+    location: "Ajax, ON",
+    startDate: "Mar 2021",
+    endDate: "Aug 2025",
+    description: [
+      "Conducted rescues, administered first aid/CPR, and ensured patron safety",
+      "Instructed swim lessons for infants to adults, improving safety and confidence in the water",
+    ],
+    techUsed: ["First Aid", "CPR", "Communication", "Teaching"],
   },
 ];
 
@@ -264,40 +216,15 @@ export type VolunteerExperience = {
 
 export const volunteerExperiences: VolunteerExperience[] = [
   {
-    title: "Coding Workshop Facilitator",
-    organization: "Queen's Tech Society",
-    startDate: "Sep 2023",
+    title: "Project Manager",
+    organization: "Queen's Sports Analytics Organization (QSAO)",
+    startDate: "Sept 2025",
     endDate: "Present",
     description: [
-      "Lead bi-weekly coding workshops for 30+ beginner programmers",
-      "Designed curriculum covering Python, web development, and Git basics",
-      "Mentored 10+ first-year students in their programming journey",
+      "Led a team of 5 analysts delivering performance insights from 10K+ data points per season",
+      "Produced articles and dashboards tracking player KPIs, lineup efficiency, and team trends",
     ],
-    skills: ["Teaching", "Curriculum Design", "Mentoring", "Public Speaking"],
-  },
-  {
-    title: "Youth Hockey Coach",
-    organization: "Kingston Minor Hockey",
-    startDate: "Oct 2022",
-    endDate: "Apr 2024",
-    description: [
-      "Coached U12 hockey team through competitive season",
-      "Developed training programs focusing on skill development and teamwork",
-      "Organized team events and parent communications",
-    ],
-    skills: ["Leadership", "Communication", "Team Building", "Event Planning"],
-  },
-  {
-    title: "Hackathon Organizer",
-    organization: "QHacks",
-    startDate: "Jan 2024",
-    endDate: "Present",
-    description: [
-      "Helped organize Queen's largest hackathon with 500+ participants",
-      "Coordinated sponsor relations and managed event logistics",
-      "Mentored participants during the 36-hour event",
-    ],
-    skills: ["Event Management", "Sponsor Relations", "Project Coordination"],
+    skills: ["Leadership", "Data Analytics", "Team Management", "Technical Writing"],
   },
 ];
 
