@@ -145,13 +145,41 @@ export type Certificate = {
 };
 
 export const certificates: Certificate[] = [
-  // Add certificates here when available
-  // {
-  //   name: "Certificate Name",
-  //   issuer: "Issuing Organization",
-  //   date: "2024",
-  //   credentialUrl: "https://credential-url.com",
-  // },
+  {
+    name: "Filipino Most Outstanding Student Award",
+    issuer: "Filipino Community Award",
+    date: "Apr 2024",
+  },
+  {
+    name: "Queen's University Bursary for Visible Minority/Racialized Students",
+    issuer: "Queen's University",
+    date: "Dec 2023",
+  },
+  {
+    name: "Whitby Rotary Scholarship",
+    issuer: "Whitby Rotary Club",
+    date: "Jun 2023",
+  },
+  {
+    name: "Schulich Leader Scholarship Nominee",
+    issuer: "Schulich Foundation",
+    date: "Jan 2023",
+  },
+  {
+    name: "B1 DELF French Certification",
+    issuer: "French Ministry of Education",
+    date: "Mar 2023",
+  },
+  {
+    name: "CPR Airway Management",
+    issuer: "Certified Training Provider",
+    date: "May 2021",
+  },
+  {
+    name: "CPR-C and Standard First Aid",
+    issuer: "Certified Training Provider",
+    date: "Jan 2020",
+  },
 ];
 
 export type Experience = {
@@ -215,6 +243,39 @@ export type VolunteerExperience = {
 };
 
 export const volunteerExperiences: VolunteerExperience[] = [
+  {
+    title: "Socials Logistics Coordinator",
+    organization: "Queen's Computing Students Association (COMPSA)",
+    startDate: "Jun 2024",
+    endDate: "Aug 2025",
+    description: [
+      "Planned and hosted social events for over 1500 students in computing, booked venues, managed budgets, and coordinated event logistics for several faculties",
+      "Collaborated on a socials team to collectively plan socials for computing students",
+    ],
+    skills: ["Event Planning", "Budget Management", "Logistics", "Team Collaboration"],
+  },
+  {
+    title: "Faculty of Computing Group Leader",
+    organization: "Queen's Computing Orientation",
+    startDate: "Jun 2024",
+    endDate: "Apr 2025",
+    description: [
+      "Led Queen's computing first-year students through Orientation Week activities and organized icebreakers, faculty events, and a campus-wide festival; facilitated bonding and eased transition to university",
+      "Directed first-year students through the adjustment to university by providing resources and academic direction, while promoting strong student habits and tutoring, resulting in high morale, focus, and academic success",
+    ],
+    skills: ["Leadership", "Mentoring", "Event Coordination", "Student Support"],
+  },
+  {
+    title: "Data Analyst/Developer",
+    organization: "Queen's Data Analytics Association",
+    startDate: "Sept 2023",
+    endDate: "Apr 2025",
+    description: [
+      "Developed critical insight and applied quality improvement principles to create software in a team setting through interactions between business/computing associates in professional settings",
+      "Collaborated with project managers and coordinators to critique softwares, conduct project meetings, and deliver a pitch of software functions; enhanced awareness of key challenges and the need to keep improving software",
+    ],
+    skills: ["Software Development", "Data Analytics", "Team Collaboration", "Project Management"],
+  },
   {
     title: "Project Manager",
     organization: "Queen's Sports Analytics Organization (QSAO)",
