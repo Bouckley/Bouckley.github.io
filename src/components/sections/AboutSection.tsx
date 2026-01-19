@@ -1,6 +1,105 @@
-import { ExternalLink, Calendar } from "lucide-react";
+import { useState } from "react";
+import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { aboutBio, linkedinPosts, personalInfo } from "@/data/portfolio-data";
+import { Button } from "@/components/ui/button";
+
+const LinkedInPostsCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? linkedinPosts.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === linkedinPosts.length - 1 ? 0 : prev + 1));
+  };
+
+  if (linkedinPosts.length === 0) {
+    return (
+      <div className="bg-card rounded-xl p-6 card-elevated border border-border">
+        <h3 className="text-xl font-semibold mb-4">LinkedIn Posts</h3>
+        <div className="text-center py-8 text-muted-foreground">
+          <p className="text-sm">No posts yet.</p>
+          <p className="text-xs mt-1">Add posts in portfolio-data.ts</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-card rounded-xl p-6 card-elevated border border-border">
+      <h3 className="text-xl font-semibold mb-4">LinkedIn Posts</h3>
+      
+      {/* Post Display */}
+      <div className="relative overflow-hidden rounded-lg">
+        <iframe
+          src={linkedinPosts[currentIndex].embedUrl}
+          height={linkedinPosts[currentIndex].height}
+          width="100%"
+          frameBorder="0"
+          allowFullScreen
+          title={`LinkedIn post ${currentIndex + 1}`}
+          className="bg-muted/50"
+        />
+      </div>
+
+      {/* Navigation Controls */}
+      <div className="flex items-center justify-between mt-4">
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={goToPrevious}
+          className="h-8 w-8"
+          aria-label="Previous post"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+
+        {/* Dot Indicators */}
+        <div className="flex items-center gap-2">
+          {linkedinPosts.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-2 h-2 rounded-full transition-colors ${
+                index === currentIndex
+                  ? "bg-primary"
+                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+              }`}
+              aria-label={`Go to post ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={goToNext}
+          className="h-8 w-8"
+          aria-label="Next post"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+      </div>
+
+      {/* Post Counter */}
+      <p className="text-center text-xs text-muted-foreground mt-2">
+        {currentIndex + 1} of {linkedinPosts.length}
+      </p>
+
+      <a
+        href={personalInfo.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-4 inline-flex items-center gap-2 text-sm text-primary hover:underline focus-ring rounded"
+      >
+        View all on LinkedIn
+        <ExternalLink className="h-3 w-3" />
+      </a>
+    </div>
+  );
+};
 
 const AboutSection = () => {
   return (
@@ -55,56 +154,7 @@ const AboutSection = () => {
 
           {/* LinkedIn Posts Column */}
           <AnimatedSection delay={0.2}>
-            <div className="bg-card rounded-xl p-6 card-elevated border border-border">
-              <h3 className="text-xl font-semibold mb-4">LinkedIn Posts</h3>
-              
-              {linkedinPosts.length > 0 ? (
-                <div className="space-y-4">
-                  {linkedinPosts.map((post, index) => (
-                    <a
-                      key={index}
-                      href={post.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors focus-ring group"
-                    >
-                      <div className="flex items-start justify-between gap-2 mb-2">
-                        <h4 className="font-medium text-sm group-hover:text-primary transition-colors line-clamp-2">
-                          {post.title}
-                        </h4>
-                        <ExternalLink className="h-4 w-4 flex-shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
-                      </div>
-                      <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
-                        {post.excerpt}
-                      </p>
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <Calendar className="h-3 w-3" />
-                        {new Date(post.date).toLocaleDateString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-8 text-muted-foreground">
-                  <p className="text-sm">No posts yet.</p>
-                  <p className="text-xs mt-1">Add posts in portfolio-data.ts</p>
-                </div>
-              )}
-
-              <a
-                href={personalInfo.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-2 text-sm text-primary hover:underline focus-ring rounded"
-              >
-                View all on LinkedIn
-                <ExternalLink className="h-3 w-3" />
-              </a>
-            </div>
+            <LinkedInPostsCarousel />
           </AnimatedSection>
         </div>
       </div>
