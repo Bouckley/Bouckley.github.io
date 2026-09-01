@@ -1,111 +1,135 @@
-import { Link } from "react-router-dom";
-import { ArrowRight, Github, Linkedin } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowDown, Github, Linkedin, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { personalInfo, quickStats } from "@/data/portfolio-data";
 import AnimatedSection from "@/components/AnimatedSection";
-import { Metric } from "@/components/primitives";
-import { education, headlineMetrics, personalInfo } from "@/data/portfolio-data";
 
-const glance = [
-  { label: "Studying", value: "B.S. Computer Science" },
-  { label: "University", value: education.institution },
-  { label: "Graduating", value: education.period.split(" – ")[1] },
-  { label: "Currently", value: "AI & Data Analyst, CIBC" },
-];
+const HeroSection = () => {
+  const handleScroll = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-const HeroSection = () => (
-  <section id="home" className="section-padding pt-32">
-    <div className="section-container">
-      <div className="grid items-start gap-12 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
+  return (
+    <section
+      id="home"
+      className="min-h-screen flex flex-col justify-center pt-16"
+    >
+      <div className="section-container section-padding">
         <AnimatedSection>
-          <p className="inline-flex items-center gap-2 rounded-sm border border-primary/25 bg-primary/10 px-3 py-1.5 font-mono text-xs text-primary">
-            <span
-              aria-hidden="true"
-              className="h-1.5 w-1.5 rounded-full bg-primary"
-            />
-            {personalInfo.availability}
-          </p>
+          <div className="max-w-3xl">
+            {/* Greeting */}
+            <motion.p
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-primary font-mono text-sm sm:text-base mb-4"
+            >
+              Hi, my name is
+            </motion.p>
 
-          <h1 className="mt-6 text-5xl font-semibold sm:text-6xl">
-            {personalInfo.name}
-          </h1>
+            {/* Name */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4">
+              {personalInfo.name}
+            </h1>
 
-          <p className="mt-4 font-display text-2xl text-muted-foreground">
-            {personalInfo.headline}
-          </p>
+            {/* Headline */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-muted-foreground mb-6">
+              {personalInfo.headline}
+            </h2>
 
-          <p className="prose-measure mt-6 text-lg text-muted-foreground">
-            {personalInfo.summary}
-          </p>
+            {/* Subtext */}
+            <p className="text-lg text-muted-foreground max-w-xl mb-8">
+              {personalInfo.subtext}
+            </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button asChild size="lg">
-              <Link to="/resume">
-                View resume
-                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <a href="#projects">See projects</a>
-            </Button>
-            <div className="flex items-center gap-1">
-              <Button asChild variant="ghost" size="icon" className="rounded-sm">
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-3 mb-12">
+              <Button
+                size="lg"
+                onClick={() => handleScroll("#projects")}
+                className="focus-ring"
+              >
+                View Projects
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => handleScroll("#contact")}
+                className="focus-ring"
+              >
+                Contact Me
+              </Button>
+              <Button
+                variant="ghost"
+                size="lg"
+                asChild
+                className="focus-ring"
+              >
                 <a
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="GitHub profile"
                 >
-                  <Github className="h-[18px] w-[18px]" aria-hidden="true" />
+                  <Github className="mr-2 h-4 w-4" />
+                  GitHub
                 </a>
               </Button>
-              <Button asChild variant="ghost" size="icon" className="rounded-sm">
+              <Button
+                variant="ghost"
+                size="lg"
+                asChild
+                className="focus-ring"
+              >
                 <a
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="LinkedIn profile"
                 >
-                  <Linkedin className="h-[18px] w-[18px]" aria-hidden="true" />
+                  <Linkedin className="mr-2 h-4 w-4" />
+                  LinkedIn
                 </a>
               </Button>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="flex flex-wrap gap-8">
+              {quickStats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  className="text-center"
+                >
+                  <p className="text-3xl font-bold text-primary">{stat.value}</p>
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </AnimatedSection>
 
-        <AnimatedSection delay={0.1}>
-          <div className="card-surface p-6">
-            <h2 className="eyebrow mb-4">At a glance</h2>
-            <dl className="space-y-4">
-              {glance.map((row) => (
-                <div
-                  key={row.label}
-                  className="flex items-baseline justify-between gap-4 border-b border-border pb-3 last:border-0 last:pb-0"
-                >
-                  <dt className="text-xs uppercase tracking-wider text-muted-foreground">
-                    {row.label}
-                  </dt>
-                  <dd className="text-right text-sm font-medium">{row.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </AnimatedSection>
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.5 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block"
+        >
+          <button
+            onClick={() => handleScroll("#about")}
+            className="p-2 text-muted-foreground hover:text-primary transition-colors focus-ring rounded-full animate-bounce"
+            aria-label="Scroll to about section"
+          >
+            <ArrowDown className="h-6 w-6" />
+          </button>
+        </motion.div>
       </div>
-
-      <AnimatedSection delay={0.2}>
-        <div className="mt-16 grid gap-8 border-t border-border pt-12 sm:grid-cols-3">
-          {headlineMetrics.map((metric) => (
-            <Metric
-              key={metric.label}
-              value={metric.value}
-              label={metric.label}
-              context={metric.context}
-            />
-          ))}
-        </div>
-      </AnimatedSection>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default HeroSection;

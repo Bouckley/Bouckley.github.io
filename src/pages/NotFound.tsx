@@ -1,35 +1,22 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import { useDocumentMeta } from "@/hooks/use-document-meta";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const NotFound = () => {
-  useDocumentMeta("Page not found | Jordan Santos-Bouckley");
+  const location = useLocation();
+
+  useEffect(() => {
+    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+  }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <Navbar />
-      <main id="main" className="flex flex-1 items-center">
-        <div className="section-container py-24 text-center">
-          <p className="eyebrow mb-4">Error 404</p>
-          <h1 className="text-4xl font-semibold sm:text-5xl">
-            This page does not exist
-          </h1>
-          <p className="prose-measure mx-auto mt-6 text-lg text-muted-foreground">
-            The link may be out of date, or the address mistyped.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button asChild size="lg">
-              <Link to="/">Back to home</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link to="/resume">View resume</Link>
-            </Button>
-          </div>
-        </div>
-      </main>
-      <Footer />
+    <div className="flex min-h-screen items-center justify-center bg-muted">
+      <div className="text-center">
+        <h1 className="mb-4 text-4xl font-bold">404</h1>
+        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
+        <a href="/" className="text-primary underline hover:text-primary/90">
+          Return to Home
+        </a>
+      </div>
     </div>
   );
 };

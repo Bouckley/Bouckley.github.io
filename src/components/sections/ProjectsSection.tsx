@@ -1,186 +1,270 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Github } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, Youtube, ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
-import {
-  MetricText,
-  SectionHeading,
-  TechChip,
-  TechChipList,
-} from "@/components/primitives";
-import {
-  categoryLabels,
-  featuredProjects,
-  type Project,
-} from "@/data/portfolio-data";
+import Badge from "@/components/Badge";
+import { projects, Project } from "@/data/portfolio-data";
+
+const categories = [
+  { id: "all", label: "All" },
+  { id: "software", label: "Software" },
+  { id: "data", label: "Data" },
+  { id: "security", label: "Security" },
+  { id: "ai-ml", label: "AI/ML" },
+];
 
 const ProjectsSection = () => {
-  const [openProject, setOpenProject] = useState<Project | null>(null);
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const filteredProjects = projects.filter((project) => {
+    const matchesCategory =
+      activeCategory === "all" || project.category === activeCategory;
+    const matchesSearch =
+      project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.techStack.some((tech) =>
+        tech.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    return matchesCategory && matchesSearch;
+  });
 
   return (
-    <section
-      id="projects"
-      aria-labelledby="projects-heading"
-      className="section-padding scroll-mt-24 border-t border-border"
-    >
+    <section id="projects" className="section-padding">
       <div className="section-container">
         <AnimatedSection>
-          <SectionHeading
-            id="projects-heading"
-            eyebrow="Selected work"
-            title="Projects"
-            description="Three builds that best show how I work — from a geospatial mobile app to an AI compliance pipeline to a predictive fleet model."
-            actions={
-              <Button asChild variant="outline">
-                <Link to="/resume#projects">
-                  All projects
-                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                </Link>
-              </Button>
-            }
-          />
+          <h2 className="text-3xl sm:text-4xl font-bold mb-2">Projects</h2>
+          <div className="w-20 h-1 bg-primary rounded-full mb-8" />
         </AnimatedSection>
 
-        <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featuredProjects.map((project, index) => (
-            <AnimatedSection as="li" key={project.id} delay={index * 0.05}>
-              <article className="card-interactive flex h-full flex-col p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <TechChip variant="accent">
-                    {categoryLabels[project.category]}
-                  </TechChip>
-                  <span className="font-mono text-xs text-muted-foreground">
-                    {project.period}
-                  </span>
+        {/* Filters */}
+        <AnimatedSection delay={0.1}>
+          <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            {/* Category Filters */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors focus-ring ${
+                    activeCategory === category.id
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  }`}
+                >
+                  {category.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Search */}
+            <div className="flex-1 max-w-xs">
+              <input
+                type="text"
+                placeholder="Search projects or tech..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-4 py-2 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus-ring"
+              />
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Projects Grid */}
+        <AnimatedSection delay={0.2}>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="group bg-card rounded-xl p-6 card-elevated border border-border flex flex-col"
+              >
+                {/* Category Badge */}
+                <div className="mb-4">
+                  <Badge variant="primary" size="sm">
+                    {categories.find((c) => c.id === project.category)?.label}
+                  </Badge>
                 </div>
 
-                <h3 className="mt-4 text-xl font-semibold">{project.title}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {project.tagline}
-                </p>
-
-                <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+                {/* Title & Description */}
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4 flex-1">
                   {project.description}
                 </p>
 
-                <TechChipList
-                  items={project.tech}
-                  max={4}
-                  className="mt-6"
-                  label={`${project.title} technologies`}
-                />
+                {/* Role */}
+                <p className="text-xs text-muted-foreground mb-3">
+                  Role: {project.role}
+                </p>
 
-                <div className="mt-6 flex items-center gap-2 border-t border-border pt-4">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setOpenProject(project)}
-                  >
-                    Details
-                    <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" aria-hidden="true" />
-                    <span className="sr-only"> about {project.title}</span>
-                  </Button>
-                  {project.githubUrl ? (
-                    <Button variant="ghost" size="sm" asChild className="ml-auto">
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.techStack.slice(0, 4).map((tech) => (
+                    <Badge key={tech} variant="outline" size="sm">
+                      {tech}
+                    </Badge>
+                  ))}
+                  {project.techStack.length > 4 && (
+                    <Badge variant="outline" size="sm">
+                      +{project.techStack.length - 4}
+                    </Badge>
+                  )}
+                </div>
+
+                {/* Actions */}
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-border">
+                  {project.githubUrl && (
+                    <Button variant="ghost" size="sm" asChild className="focus-ring">
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Github className="mr-1.5 h-4 w-4" aria-hidden="true" />
+                        <Github className="mr-1.5 h-4 w-4" />
                         Code
-                        <span className="sr-only"> for {project.title}</span>
                       </a>
                     </Button>
-                  ) : null}
-                </div>
-              </article>
-            </AnimatedSection>
-          ))}
-        </ul>
-      </div>
-
-      {/*
-        Radix Dialog gives us the focus trap, Escape handling, scroll lock and
-        aria wiring that the previous hand-rolled modal was missing.
-      */}
-      <Dialog
-        open={openProject !== null}
-        onOpenChange={(open) => !open && setOpenProject(null)}
-      >
-        <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-2xl">
-          {openProject ? (
-            <>
-              <DialogHeader>
-                <div className="flex flex-wrap items-center gap-3">
-                  <TechChip variant="accent">
-                    {categoryLabels[openProject.category]}
-                  </TechChip>
-                  <span className="font-mono text-xs text-muted-foreground">
-                    {openProject.period}
-                  </span>
-                </div>
-                <DialogTitle className="mt-3 text-2xl">
-                  {openProject.title}
-                </DialogTitle>
-                <DialogDescription className="text-base">
-                  {openProject.tagline} · {openProject.role}
-                </DialogDescription>
-              </DialogHeader>
-
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {openProject.longDescription}
-              </p>
-
-              <div>
-                <h4 className="eyebrow mb-3">Highlights</h4>
-                <ul className="space-y-2">
-                  {openProject.highlights.map((highlight) => (
-                    <li
-                      key={highlight}
-                      className="flex gap-3 text-sm text-muted-foreground"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-primary"
-                      />
-                      <MetricText>{highlight}</MetricText>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="eyebrow mb-3">Stack</h4>
-                <TechChipList items={openProject.tech} />
-              </div>
-
-              {openProject.githubUrl ? (
-                <div className="border-t border-border pt-4">
-                  <Button asChild>
-                    <a
-                      href={openProject.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github className="mr-2 h-4 w-4" aria-hidden="true" />
-                      View source
-                    </a>
+                  )}
+                  {project.youtubeUrl && (
+                    <Button variant="ghost" size="sm" asChild className="focus-ring">
+                      <a
+                        href={project.youtubeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Youtube className="mr-1.5 h-4 w-4" />
+                        Demo
+                      </a>
+                    </Button>
+                  )}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setSelectedProject(project)}
+                    className="focus-ring ml-auto"
+                  >
+                    Read more
+                    <ExternalLink className="ml-1.5 h-3 w-3" />
                   </Button>
                 </div>
-              ) : null}
-            </>
-          ) : null}
-        </DialogContent>
-      </Dialog>
+              </motion.div>
+            ))}
+          </div>
+
+          {filteredProjects.length === 0 && (
+            <div className="text-center py-12 text-muted-foreground">
+              <p>No projects match your filters.</p>
+            </div>
+          )}
+        </AnimatedSection>
+
+        {/* Project Modal */}
+        <AnimatePresence>
+          {selectedProject && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+              onClick={() => setSelectedProject(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-card rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 sm:p-8 border border-border shadow-xl"
+              >
+                {/* Header */}
+                <div className="flex items-start justify-between gap-4 mb-6">
+                  <div>
+                    <Badge variant="primary" size="md" className="mb-2">
+                      {categories.find((c) => c.id === selectedProject.category)?.label}
+                    </Badge>
+                    <h3 className="text-2xl font-bold">{selectedProject.title}</h3>
+                    <p className="text-muted-foreground">{selectedProject.role}</p>
+                  </div>
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="p-2 rounded-full hover:bg-muted transition-colors focus-ring"
+                    aria-label="Close modal"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+
+                {/* Description */}
+                <p className="text-muted-foreground mb-6">
+                  {selectedProject.longDescription || selectedProject.description}
+                </p>
+
+                {/* Features */}
+                {selectedProject.features && (
+                  <div className="mb-6">
+                    <h4 className="font-semibold mb-3">Key Features</h4>
+                    <ul className="space-y-2">
+                      {selectedProject.features.map((feature, index) => (
+                        <li
+                          key={index}
+                          className="flex items-start gap-2 text-muted-foreground"
+                        >
+                          <span className="text-primary mt-1">▹</span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Tech Stack */}
+                <div className="mb-6">
+                  <h4 className="font-semibold mb-3">Technologies Used</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.techStack.map((tech) => (
+                      <Badge key={tech} variant="outline" size="md">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex flex-wrap gap-3 pt-4 border-t border-border">
+                  {selectedProject.githubUrl && (
+                    <Button asChild className="focus-ring">
+                      <a
+                        href={selectedProject.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="mr-2 h-4 w-4" />
+                        View Code
+                      </a>
+                    </Button>
+                  )}
+                  {selectedProject.youtubeUrl && (
+                    <Button variant="outline" asChild className="focus-ring">
+                      <a
+                        href={selectedProject.youtubeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Youtube className="mr-2 h-4 w-4" />
+                        Watch Demo
+                      </a>
+                    </Button>
+                  )}
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </section>
   );
 };
