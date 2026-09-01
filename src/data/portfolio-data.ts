@@ -5,21 +5,21 @@
 
 export const personalInfo = {
   name: "Jordan Santos-Bouckley",
-  headline: "Computer Science Student @ Queen's University",
-  subtext: "Focused on data analytics, software development, cybersecurity, and AI applications. Eager to contribute to collaborative teams and ship high-quality outcomes.",
+  headline: "AI & Data Analyst @ CIBC | Computer Science @ Queen's University",
+  subtext: "I turn operational data into decisions — building analytics, BI dashboards, and decision-automation tools on large real-world datasets. Currently automating asset-risk remediation across a 40,000+ asset enterprise inventory at CIBC.",
   email: "jordanbouckley@gmail.com",
   phone: "(905)-449-2188",
   github: "https://github.com/Bouckley",
   linkedin: "https://linkedin.com/in/jordan-bouckley",
   resumeUrl: "/resume.pdf",
   location: "Kingston, ON",
-  expectedGrad: "2027",
+  expectedGrad: "2028",
 };
 
 export const quickStats = [
-  { label: "Projects", value: "4+" },
-  { label: "Languages", value: "10" },
-  { label: "Years Coding", value: "3+" },
+  { label: "Enterprise assets automated", value: "40K+" },
+  { label: "Work orders analyzed", value: "20K+" },
+  { label: "Manual review time cut", value: "50%" },
 ];
 
 export const aboutBio = {
@@ -76,6 +76,21 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "4",
+    title: "Roamer",
+    description: "Location-based social app rendering friends' posts as GPS-pinned landmarks on a live Mapbox map, with privacy enforced at the database layer.",
+    longDescription: "Built a full-stack geo-social mobile app rendering friends' posts as GPS-pinned landmarks on a live Mapbox GL map, backed by Supabase PostgreSQL/PostGIS with GIST-indexed geography. Row-level security enforces location fuzzing (ST_SnapToGrid) and privacy controls at the database layer rather than in application code, so a client bug cannot leak a precise location.",
+    category: "software",
+    techStack: ["React Native", "TypeScript", "Mapbox GL", "Supabase", "PostGIS", "PostgreSQL"],
+    role: "Full-Stack Developer",
+    features: [
+      "Live Mapbox GL map rendering friends' posts as GPS-pinned landmarks",
+      "GIST-indexed PostGIS geography for fast proximity queries",
+      "Row-level security enforcing privacy controls at the database layer",
+      "Location fuzzing via ST_SnapToGrid so precise coordinates never leave the database",
+    ],
+  },
+  {
     id: "1",
     title: "Fleet Condition Index (FCI)",
     description: "Fleet scoring model analyzing 10 years of work-order data to evaluate bus performance and guide long-term fleet planning for Durham Region Transit.",
@@ -121,6 +136,20 @@ export const projects: Project[] = [
       "OpenAI API integration",
       "Personalized workout routine analysis",
       "Full-stack implementation",
+    ],
+  },
+  {
+    id: "5",
+    title: "Asset Fuzzy Matching",
+    description: "Fuzzy-matching system that flags enterprise assets whose manufacturer names, dates, or versions have drifted, across 25,000+ records.",
+    longDescription: "Built a fuzzy-matching system that assesses asset risk by detecting manufacturers and components with changed names, dates, or versions. String-similarity algorithms flag records for audit across an inventory of 25,000+ assets, surfacing drift that exact-match reconciliation misses entirely.",
+    category: "data",
+    techStack: ["Python", "SQL", "ServiceNow CMDB"],
+    role: "Data Analyst",
+    features: [
+      "String-similarity matching across 25,000+ enterprise assets",
+      "Detects manufacturer, date, and version drift that exact matching misses",
+      "Flags records for audit and downstream risk assessment",
     ],
   },
 ];
@@ -197,16 +226,29 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
+    title: "AI & Data Analyst, Risk Asset Management",
+    company: "CIBC",
+    location: "Toronto, ON",
+    startDate: "May 2026",
+    endDate: "Present",
+    description: [
+      "Automated asset-remediation decisions at scale with rules-based algorithms, replacing manual review across an inventory of 40,000+ enterprise assets and cutting review time by 50%",
+      "Analyzed the risk profile of 40,000+ enterprise assets to prioritize remediation and reduce security exposure",
+      "Delivered data-driven analysis and recommendations to stakeholders, informing enterprise asset-management decisions",
+    ],
+    techUsed: ["Python", "SQL", "ServiceNow CMDB", "Data Analysis"],
+  },
+  {
     title: "Data Analyst Intern",
     company: "Durham Region Transit",
     location: "Whitby, ON",
     startDate: "May 2025",
     endDate: "Aug 2025",
     description: [
-      "Analyzed 20K+ work orders and maintenance records for 200+ transit vehicles using SQL, Python (pandas, NumPy), Maximo, and Excel",
-      "Identified data quality issues to streamline the database, improving data workflows by 50%",
-      "Built interactive PowerBI dashboards to visualize KPIs, bus fleet conditions, and cost per service hour",
-      "Partnered with maintenance and operations teams to support bus scheduling decisions and fleet retirement recommendations",
+      "Analyzed 20,000+ work orders across a 200+ vehicle fleet using SQL, Python (Pandas, NumPy), Maximo, and Excel",
+      "Resolved data-quality issues across the maintenance database, improving reporting workflow efficiency by 50%",
+      "Developed interactive Power BI dashboards giving stakeholders end-to-end visibility into fleet KPIs and cost per service hour",
+      "Drove data-driven scheduling and asset-retirement decisions with maintenance and operations teams",
     ],
     techUsed: ["SQL", "Python", "Pandas", "NumPy", "PowerBI", "Excel", "Maximo"],
   },
@@ -217,8 +259,8 @@ export const experiences: Experience[] = [
     startDate: "Sept 2025",
     endDate: "Present",
     description: [
-      "Led a team of 5 analysts delivering performance insights from 10K+ data points per season",
-      "Produced articles and dashboards tracking player KPIs, lineup efficiency, and team trends",
+      "Led a team of 5 analysts producing performance insights from 10,000+ data points per season",
+      "Delivered articles and dashboards tracking player KPIs, lineup efficiency, and team trends",
     ],
     techUsed: ["Data Analytics", "Dashboard Development", "Team Leadership"],
   },
@@ -285,8 +327,8 @@ export const volunteerExperiences: VolunteerExperience[] = [
     startDate: "Sept 2025",
     endDate: "Present",
     description: [
-      "Led a team of 5 analysts delivering performance insights from 10K+ data points per season",
-      "Produced articles and dashboards tracking player KPIs, lineup efficiency, and team trends",
+      "Led a team of 5 analysts producing performance insights from 10,000+ data points per season",
+      "Delivered articles and dashboards tracking player KPIs, lineup efficiency, and team trends",
     ],
     skills: ["Leadership", "Data Analytics", "Team Management", "Technical Writing"],
   },
