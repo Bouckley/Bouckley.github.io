@@ -4,17 +4,45 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jordan Bouckley | Software Developer</title>
-    <meta name="description" content="Computer Science student at Queen's University passionate about software development, data engineering, security, and AI/ML." />
-    <meta name="author" content="Jordan Bouckley" />
-    <meta name="keywords" content="Jordan Bouckley, software developer, computer science, Queen's University, portfolio" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0e1218" media="(prefers-color-scheme: dark)" />
 
-    <meta property="og:title" content="Jordan Bouckley | Software Developer" />
-    <meta property="og:description" content="Computer Science student at Queen's University passionate about software development, data engineering, security, and AI/ML." />
+    <title>Jordan Santos-Bouckley | Data &amp; Software Engineering</title>
+    <meta
+      name="description"
+      content="Computer Science student at Queen's University building analytics, BI dashboards, and decision-automation tools on large real-world datasets."
+    />
+    <meta name="author" content="Jordan Santos-Bouckley" />
+
+    <meta property="og:title" content="Jordan Santos-Bouckley | Data &amp; Software Engineering" />
+    <meta
+      property="og:description"
+      content="Computer Science student at Queen's University building analytics, BI dashboards, and decision-automation tools on large real-world datasets."
+    />
     <meta property="og:type" content="website" />
-
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@jordanbouckley" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!--
+      Resolve the theme before first paint. Without this the page renders light
+      then snaps to dark once React mounts.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var dark =
+            stored === "dark" ||
+            (stored !== "light" &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {
+          /* private mode or blocked storage — fall through to the light default */
+        }
+      })();
+    </script>
   </head>
 
   <body>
