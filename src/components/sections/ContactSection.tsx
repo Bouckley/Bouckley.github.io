@@ -77,8 +77,9 @@ const ContactSection = () => {
             <h2 className="text-3xl sm:text-4xl font-bold mb-2">Get In Touch</h2>
             <div className="w-20 h-1 bg-primary rounded-full mx-auto mb-6" />
             <p className="text-muted-foreground text-lg">
-              I'm always open to discussing new projects, opportunities, or just
-              having a chat about tech. Feel free to reach out!
+              Always happy to talk about new projects, internship openings, or
+              whatever you happen to be building right now. Send me a note and
+              I'll get back to you.
             </p>
           </div>
         </AnimatedSection>
