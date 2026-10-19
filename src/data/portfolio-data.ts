@@ -50,6 +50,10 @@ export const aboutBio = {
 
 export const linkedinPosts = [
   {
+    embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:share:7418080578140536833?collapsed=1",
+    height: 627,
+  },
+  {
     embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7418085486541361152?collapsed=1",
     height: 450,
   },
@@ -75,6 +79,25 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    id: "6",
+    title: "Hotel Spot",
+    description: "Type one prompt like \"cheapest hotel in Toronto tonight\" and an AI voice agent phones three hotels at once, then emails you the best live price with the call recording attached.",
+    longDescription: "Hotel Spot was built by a team of four at the TechTO \"Fast & Frugal\" hackathon in October 2026, where judges scored on cost, so the LLM only runs when regex and structured data can't do the job. The team built the search, prompt parsing, email, and UI; I led the team and owned the voice and telephony layer. That meant the ElevenLabs agent, the Twilio number, and the webhook tool the agent calls mid-conversation to report availability and price. Test calls worked fine, but real hotels had phone menus, hold music, and staff who answered with a brand name. I pulled every call's transcript and turn-level metrics, sorted the failures into nine types, and fixed each one with a prompt rule, a turn-taking setting, or a \"listen first\" mode that waits for a human before speaking. It's a hackathon prototype, demoed live but not in production.",
+    category: "ai-ml",
+    techStack: ["Python", "ElevenLabs", "Twilio", "Pydantic", "httpx", "Streamlit", "SerpApi", "pytest", "ngrok"],
+    role: "Team Lead & Voice/Telephony Owner",
+    githubUrl: "https://github.com/Queens-Dev-Den/hotel-agent",
+    features: [
+      "Calls 3 hotels in parallel and never books anything",
+      "Median agent reply latency of 0.77 s, profiled turn by turn",
+      "Fixed 9 failure types found on live hotel calls",
+      "Automated evaluation criteria grade every call",
+      "Call recording in the email so the price can be checked",
+      "262 offline tests with all HTTP mocked",
+      "Git workflow that let 4 people land 179 commits with no lost work",
+    ],
+  },
   {
     id: "4",
     title: "Roamer",
